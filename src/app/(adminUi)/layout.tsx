@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/Layout/sidebar/app-sidebar"
+import { AppSidebar } from "@/components/Layout/sidebar/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,15 +6,25 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
-export default function Page({children}: {children: React.ReactNode}) {
+export default function Page({
+  admin,
+  user,
+}: {
+  admin: React.ReactNode;
+  user: React.ReactNode;
+}) {
+
+  const userInfo = {
+    role: "admin"
+  };
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -38,10 +48,8 @@ export default function Page({children}: {children: React.ReactNode}) {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-         {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 p-4">{userInfo.role === "admin" ? admin : user}</div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }
